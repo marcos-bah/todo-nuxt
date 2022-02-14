@@ -1,6 +1,7 @@
 <template>
   <div>
     <v-container>
+      <v-btn color="primary" to="/add/">Novo</v-btn>
       <Title>
         <template #title>Todo - Nuxt & Vuex</template>
       </Title>

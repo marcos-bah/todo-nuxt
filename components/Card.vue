@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-card v-for="(todo, index) in todos" :key="index">
+    <v-card class="my-4" v-for="(todo, index) in todos" :key="index">
       <v-list-item>
         <v-list-item-content>
           <v-list-item-title> {{ todo.title }} </v-list-item-title>
@@ -10,7 +10,7 @@
         <v-list-item-avatar>
           <input
             :checked="todo.isCompleted"
-            @click="updateIsComplete(todo, !todo.isCompleted)"
+            @click="updateIsComplete(todo, $event.target.checked)"
             type="checkbox"
           />
         </v-list-item-avatar>
@@ -18,7 +18,7 @@
 
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="primary">Editar</v-btn>
+        <v-btn color="primary" :to="'/edit/' + todo.id">Editar</v-btn>
       </v-card-actions>
     </v-card>
   </div>
@@ -37,7 +37,10 @@ export default Vue.extend({
   },
   methods: {
     updateIsComplete(todo: IToDo, isCompleted: boolean) {
-      this.$store.state.updateTodo({ ...todo, isCompleted });
+      this.$store.commit("updateTodo", {
+        ...todo,
+        isCompleted,
+      });
     },
   },
 });
