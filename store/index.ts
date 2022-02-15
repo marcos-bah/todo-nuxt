@@ -46,9 +46,12 @@ export const mutations = {
     state.localTodo.isCompleted = isCompleted;
   },
   clearLocalTodo(state: { localTodo: IToDo }) {
-    state.localTodo.description = "";
-    state.localTodo.title = "";
-    state.localTodo.id = "0";
+    state.localTodo = {
+      id: '0',
+      title: '',
+      description: '',
+      isCompleted: false,
+    } as IToDo;
   },
   initLocalTodo(state: { todos: IToDo[]; localTodo: IToDo }, id: IToDo['id']) {
     const index = state.todos.findIndex(t => t.id === id);
